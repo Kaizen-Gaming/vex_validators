@@ -4,16 +4,20 @@ defmodule VexValidators.Uuid do
 
   ## Options
 
-  The `options` parameter must have one of the folllowing values:
+  The `options` can be a keyword list with the following keys:
 
-  * `:default`: The value must a string with format `"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxx"`
-    where `x` is a hex number.
-  * `:hex`: The value must be a string with the format `"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"`
-    where `x` is a hex number.
-  * `:urn`: The value must be a string with the format `"urn:uuid:xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxx"`
-    where `x` is a hex number.
-  * `:any` or `true`: The value must be a string of any of the supported formats (`:default`, `:hex` or `:urn`).
-  * `:not_any` or `false`: The value must **not** be a valid UUID string.
+  * `:format`: An atom or boolean that defines the validation & format of the UUID:
+
+    * `:default`: The value must a string with format `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxx`
+      where `x` is a hex number.
+    * `:hex`: The value must be a string with the format `xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`
+      where `x` is a hex number.
+    * `:urn`: The value must be a string with the format `urn:uuid:xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxx`
+      where `x` is a hex number.
+    * `:any` or `true`: The value must be a string of any of the supported formats (`:default`, `:hex` or `:urn`).
+    * `:not_any` or `false`: The value must **not** be a valid UUID string.
+
+  The options can also be an atom or boolean instead of the keyword list, which is the value of the `:format` option.
 
   ## Examples
 
@@ -91,14 +95,7 @@ defmodule VexValidators.Uuid do
       iex> VexValidators.Uuid.__validator__(:message_fields)
       [value: "Bad value", format: "UUID Format"]
 
-  An example:
-
-      iex> VexValidators.Uuid.validate("not_a_guid", format: :hex,
-      ...>   message: "should be a <%= format %> UUID")
-      {:error, "should be a hex UUID"}
-      iex> VexValidators.Uuid.validate("02aa7f483ccd11e4b63e14109ff1a304", format: :not_any,
-      ...>   message: "UUID is not accepted here in <%= format %> format")
-      {:error, "UUID is not accepted here in not_any format"}
+  For examples please see the [Vex documentation](https://github.com/CargoSense/vex#custom-eex-error-renderer-messages).
   """
 
   use Vex.Validator
