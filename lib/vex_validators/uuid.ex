@@ -93,7 +93,7 @@ defmodule VexValidators.Uuid do
   Custom error messages (in EEx format), provided as :message, can use the following values:
 
       iex> VexValidators.Uuid.__validator__(:message_fields)
-      [value: "Bad value", format: "UUID Format"]
+      [value: "Bad value", format: "UUID format"]
 
   For examples please see the [Vex documentation](https://github.com/CargoSense/vex#custom-eex-error-renderer-messages).
   """
@@ -105,7 +105,7 @@ defmodule VexValidators.Uuid do
   @urn_prefix "urn:uuid:"
 
   @doc false
-  @message_fields [value: "Bad value", format: "UUID Format"]
+  @message_fields [value: "Bad value", format: "UUID format"]
   def validate(value, true), do: validate(value, format: :any)
   def validate(value, false), do: validate(value, format: :not_any)
   def validate(value, options) when options in @all_formats, do: validate(value, format: options)
@@ -150,7 +150,7 @@ defmodule VexValidators.Uuid do
     end)
   end
   defp do_validate(_, _) do
-    {:error, "must provide a valid UUID format"}
+    {:error, "must provide a valid UUID format in options"}
   end
 
 end
