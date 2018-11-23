@@ -1,5 +1,7 @@
 # Vex **Extra** Validators
 
+**Note:** If you are using the Number and/or the UUID validators, we suggest to use instead the ones from the [Vex](https://github.com/CargoSense/vex) package as we made a [PR](https://github.com/CargoSense/vex/pull/55) and it was accepted!
+
 [Vex](https://github.com/CargoSense/vex) is an extensible data validation library for Elixir.
 
 This library provides new validator [modules that can be used as sources](https://github.com/CargoSense/vex#using-modules-as-sources) in Vex.
